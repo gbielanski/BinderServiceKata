@@ -30,9 +30,18 @@ public class MainActivity extends AppCompatActivity {
 		bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
 	}
 
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if(mBound)
+			unbindService(mConnection);
+		mBound=false;
+	}
+
 	public void onButtonClick(View v){
 
 	}
+
 	private ServiceConnection mConnection = new ServiceConnection() {
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
