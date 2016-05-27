@@ -9,3 +9,4 @@
 6. Change onBind method to return LocalBinder
 7. Implement service method getRandomNumber
 8. Add ServiceConnection
+9. Bind onStart
