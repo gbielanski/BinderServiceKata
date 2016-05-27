@@ -1,10 +1,19 @@
 package pl.kata.bielanski.binderservicekata;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import static pl.kata.bielanski.binderservicekata.LocalService.*;
+
 public class MainActivity extends AppCompatActivity {
+
+	boolean mBound = false;
+	LocalService mService;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -15,4 +24,17 @@ public class MainActivity extends AppCompatActivity {
 	public void onButtonClick(View v){
 
 	}
+	private ServiceConnection mConnection = new ServiceConnection() {
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder service) {
+				LocalService.LocalBinder binder = (LocalService.LocalBinder)service;
+				mService = binder.getService();
+				mBound = true;
+			}
+
+		@Override
+		public void onServiceDisconnected(ComponentName name) {
+			mBound = false;
+		}
+	};
 }
