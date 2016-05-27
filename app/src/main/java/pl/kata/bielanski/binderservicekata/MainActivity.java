@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import static pl.kata.bielanski.binderservicekata.LocalService.*;
 
@@ -39,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void onButtonClick(View v){
-
+		if(mBound){
+			int randomNum = mService.getRundomNumber();
+			Toast.makeText(this, "Random number " + randomNum, Toast.LENGTH_LONG).show();
+		}
 	}
 
 	private ServiceConnection mConnection = new ServiceConnection() {

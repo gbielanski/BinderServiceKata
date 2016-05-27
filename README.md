@@ -11,3 +11,5 @@
 8. Add ServiceConnection
 9. Bind onStart
 10. unbind onStop
+11. on button click get random number from service and show toast
+12. show random number on button click
